@@ -8,4 +8,18 @@
 
 class MainViewModel: ViewModel<MainRouter> {
     
+    var currentWeather: Weather?
+//    var currentWeekWeather: [Weather]
+    
+    override init() {
+        super.init()
+        
+        Services.shared.weather.getCurrentWeather(location: "London") { [weak self] (weather) in
+            self?.currentWeather = weather
+        }
+    }
+    
+    func showDetail() {
+        router.route(to: .detail)
+    }
 }

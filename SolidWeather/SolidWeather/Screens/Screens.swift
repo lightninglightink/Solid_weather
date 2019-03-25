@@ -19,4 +19,9 @@ struct Screens {
         let model = MainViewModel()
         return MainViewController(viewModel: model)
     }
+    
+    static func detail() -> DetailViewController {
+        let model = DetailViewModel()
+        return DetailViewController(viewModel: model)
+    }
 }

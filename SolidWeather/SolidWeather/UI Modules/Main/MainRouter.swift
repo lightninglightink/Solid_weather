@@ -9,19 +9,19 @@
 class MainRouter: Router {
     
     enum Route {
-        case main
+        case detail
     }
     
     func route(to route: Route) {
         switch route {
             
-        case .main:
-            routeMain()
+        case .detail:
+            routeDetail()
         }
     }
     
-    private func routeMain() {
-        let vc = Screens.main()
+    private func routeDetail() {
+        let vc = Screens.detail()
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
