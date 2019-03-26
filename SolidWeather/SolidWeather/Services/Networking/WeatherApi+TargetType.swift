@@ -10,6 +10,7 @@ import Moya
 
 //&appid=YOUR_API_KEY
 
+fileprivate let apiKey = "bb55834b34109d37e9770bf7dc802402"
 
 extension WeatherApi: TargetType {
     
@@ -18,8 +19,7 @@ extension WeatherApi: TargetType {
     }
     
     var path: String {
-        let API_KEY = "bb55834b34109d37e9770bf7dc802402"
-        let postfix = "&appid=\(API_KEY)"
+        let postfix = "&appid=\(apiKey)"
         var _path = ""
         
         switch self {
@@ -30,7 +30,7 @@ extension WeatherApi: TargetType {
             _path = "/forecast?q=\(location)"
         }
         
-        return _path + postfix
+        return "\(_path)\(postfix)"
     }
     
     var method: Method {

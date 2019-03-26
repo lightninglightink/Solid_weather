@@ -74,8 +74,10 @@
 		05F0EBB0223DA05800714F3C /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		05F0EBB3223DA16C00714F3C /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
 		86440682119E3BC55B4A45F2 /* Pods-SolidWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidWeather.release.xcconfig"; path = "Target Support Files/Pods-SolidWeather/Pods-SolidWeather.release.xcconfig"; sourceTree = "<group>"; };
+		9588CA09BB02E22F3E1386D2 /* Pods-SolidWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-SolidWeather/Pods-SolidWeather.release.xcconfig"; sourceTree = "<group>"; };
 		C133E6D324F95CFC2693BD0D /* Pods_SolidWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolidWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEBACC20477780135DC63495 /* Pods-SolidWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidWeather.debug.xcconfig"; path = "Target Support Files/Pods-SolidWeather/Pods-SolidWeather.debug.xcconfig"; sourceTree = "<group>"; };
+		FDA4D669D6EC5820AD457378 /* Pods-SolidWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SolidWeather/Pods-SolidWeather.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,8 @@
 			children = (
 				EEBACC20477780135DC63495 /* Pods-SolidWeather.debug.xcconfig */,
 				86440682119E3BC55B4A45F2 /* Pods-SolidWeather.release.xcconfig */,
+				FDA4D669D6EC5820AD457378 /* Pods-SolidWeather.debug.xcconfig */,
+				9588CA09BB02E22F3E1386D2 /* Pods-SolidWeather.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -357,7 +361,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SolidWeather/Pods-SolidWeather-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-SolidWeather/Pods-SolidWeather-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONDecoder-Keypath/JSONDecoder_Keypath.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -376,7 +380,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SolidWeather/Pods-SolidWeather-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SolidWeather/Pods-SolidWeather-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
