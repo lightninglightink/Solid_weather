@@ -8,15 +8,18 @@
 
 struct Wind: Decodable {
     
-    var someField: String?
+    var speed: Double
+    var degrees: Int?
     
     enum CodingKeys: String, CodingKey {
-        case someField
+        case speed
+        case degrees = "deg"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        someField = try? container.decode(String.self, forKey: .someField)
+        speed = try container.decode(Double.self, forKey: .speed)
+        degrees = try? container.decode(Int.self, forKey: .degrees)
     }
 }

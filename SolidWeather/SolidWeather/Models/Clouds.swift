@@ -8,15 +8,15 @@
 
 struct Clouds: Decodable {
     
-    var someField: String?
+    var all: Int
     
     enum CodingKeys: String, CodingKey {
-        case someField
+        case all
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        someField = try? container.decode(String.self, forKey: .someField)
+        all = try container.decode(Int.self, forKey: .all)
     }
 }

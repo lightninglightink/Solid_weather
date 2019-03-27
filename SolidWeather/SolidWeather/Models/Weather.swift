@@ -18,36 +18,36 @@ import Foundation
 
 struct Weather: Decodable {
     
-//    var city: String?
-//    var wind: Wind?
-//    var clouds: Clouds?
-//    var measurements: Measurements?
+    var city: String?
+    var wind: Wind?
+    var clouds: Clouds?
+    var measurements: Measurements?
     var visibility: Int = -1
 //    var sunrise: Date?
 //    var sunset: Date?
-//    var weather: String?
+    var mainWeather: [MainWeather]?
     
     enum CodingKeys: String, CodingKey {
-//        case city
-//        case wind
-//        case clouds
-//        case measurements
+        case city = "name"
+        case wind
+        case clouds
+        case measurements = "main"
         case visibility
 //        case sunrise
 //        case sunset
-//        case weather
+        case mainWeather = "weather"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-//        city = try? container.decode(String.self, forKey: .city)
-//        wind = try? container.decode(Wind.self, forKey: .wind)
-//        clouds = try? container.decode(Clouds.self, forKey: .clouds)
-//        measurements = try? container.decode(Measurements.self, forKey: .measurements)
+        city = try? container.decode(String.self, forKey: .city)
+        wind = try? container.decode(Wind.self, forKey: .wind)
+        clouds = try? container.decode(Clouds.self, forKey: .clouds)
+        measurements = try? container.decode(Measurements.self, forKey: .measurements)
         visibility = try container.decode(Int.self, forKey: .visibility)
 //        sunrise = try? container.decode(Date.self, forKey: .sunrise)
 //        sunset = try? container.decode(Date.self, forKey: .sunset)
-//        weather = try? container.decode(String.self, forKey: .weather)
+        mainWeather = try? container.decode([MainWeather].self, forKey: .mainWeather)
     }
 }

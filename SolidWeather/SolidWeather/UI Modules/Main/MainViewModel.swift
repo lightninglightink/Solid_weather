@@ -9,13 +9,16 @@
 class MainViewModel: ViewModel<MainRouter> {
     
     var currentWeather: Weather?
-//    var currentWeekWeather: [Weather]
+    var currentWeekWeather: [Weather]?
     
     override init() {
         super.init()
         
         Services.shared.weather.getCurrentWeather(location: "London") { [weak self] (weather) in
             self?.currentWeather = weather
+        }
+        Services.shared.weather.getCurrentWeekWeather(location: "London") { [weak self] (weekWeather) in
+            self?.currentWeekWeather = weekWeather
         }
     }
     

@@ -7,16 +7,29 @@
 //
 
 struct Measurements: Decodable {
-    
-    var someField: String?
+
+    var temperature: Double
+    var pressure: Int
+    var humidity: Int
+    var minimalTemperature: Double
+    var maximalTemperature: Double
     
     enum CodingKeys: String, CodingKey {
-        case someField
+        case temperature = "temp"
+        case pressure
+        case humidity
+        case minimalTemperature = "temp_min"
+        case maximalTemperature = "temp_max"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        someField = try? container.decode(String.self, forKey: .someField)
+        temperature = try container.decode(Double.self, forKey: .temperature)
+        pressure = try container.decode(Int.self, forKey: .pressure)
+        humidity = try container.decode(Int.self, forKey: .humidity)
+        minimalTemperature = try container.decode(Double.self, forKey: .minimalTemperature)
+        maximalTemperature = try container.decode(Double.self, forKey: .maximalTemperature)
+
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05025940224C166200C8FFAF /* MainWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502593F224C166200C8FFAF /* MainWeather.swift */; };
 		051CF70D2248269900E824B1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051CF70C2248269900E824B1 /* DetailViewController.swift */; };
 		051CF70F224826B100E824B1 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051CF70E224826B100E824B1 /* DetailViewModel.swift */; };
 		051CF711224826BF00E824B1 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051CF710224826BF00E824B1 /* DetailRouter.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0502593F224C166200C8FFAF /* MainWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeather.swift; sourceTree = "<group>"; };
 		051CF70C2248269900E824B1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		051CF70E224826B100E824B1 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		051CF710224826BF00E824B1 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				051CF7222248340000E824B1 /* Wind.swift */,
 				051CF7242248344600E824B1 /* Clouds.swift */,
 				051CF7262248366C00E824B1 /* Measurements.swift */,
+				0502593F224C166200C8FFAF /* MainWeather.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				051CF71522482B4400E824B1 /* WeatherService.swift in Sources */,
 				051CF71A22482D7900E824B1 /* AnyService.swift in Sources */,
 				05F0EB98223D921100714F3C /* BaseNavigationViewController.swift in Sources */,
+				05025940224C166200C8FFAF /* MainWeather.swift in Sources */,
 				05F0EB7D223D91CA00714F3C /* AppDelegate.swift in Sources */,
 				05F0EBB4223DA16C00714F3C /* Screens.swift in Sources */,
 				05F0EBAD223DA02500714F3C /* MainViewController.swift in Sources */,

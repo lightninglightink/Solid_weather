@@ -9,5 +9,5 @@
 protocol NetworkingService: AnyService {
 
     func getCurrentWeather(location: String, completion: @escaping (Weather) -> Void)
-//    func getCurrentWeekWeather() -> [Weather]
+    func getCurrentWeekWeather(location: String, completion: @escaping ([Weather]) -> Void)
 }
