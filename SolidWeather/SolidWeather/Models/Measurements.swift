@@ -21,15 +21,4 @@ struct Measurements: Decodable {
         case minimalTemperature = "temp_min"
         case maximalTemperature = "temp_max"
     }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        temperature = try container.decode(Double.self, forKey: .temperature)
-        pressure = try container.decode(Int.self, forKey: .pressure)
-        humidity = try container.decode(Int.self, forKey: .humidity)
-        minimalTemperature = try container.decode(Double.self, forKey: .minimalTemperature)
-        maximalTemperature = try container.decode(Double.self, forKey: .maximalTemperature)
-
-    }
 }

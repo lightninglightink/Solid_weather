@@ -31,22 +31,49 @@ class MainViewController: ViewController<MainRouter, MainViewModel>, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
+        
+        tableView.registerCells([MainCell.self])
+    }
+    
+    override func onModelUpdates() {
+        super.onModelUpdates()
+        tableView.reloadData()
     }
     
     // MARK: - TableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.sections[section].items.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return viewModel.sections.count
     }
     
     // MARK: - TableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCell.identifier, for: indexPath) as? MainCell else {
+            return UITableViewCell()
+        }
+        
+        let sectionModel = viewModel.sections[indexPath.section]
+        let cellModel = sectionModel.items[indexPath.row]
+        
+        switch sectionModel.type {
+            
+        case .today:
+            switch cellModel.type {
+                
+            case .today(let model):
+                cell.cityLabel.text = model.city
+                cell.temperatureLabel.text = "\(model.measurements?.temperature ?? 0) F"
+            }
+        case .week:
+            break
+        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

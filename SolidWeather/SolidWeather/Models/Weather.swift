@@ -37,17 +37,4 @@ struct Weather: Decodable {
 //        case sunset
         case mainWeather = "weather"
     }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        city = try? container.decode(String.self, forKey: .city)
-        wind = try? container.decode(Wind.self, forKey: .wind)
-        clouds = try? container.decode(Clouds.self, forKey: .clouds)
-        measurements = try? container.decode(Measurements.self, forKey: .measurements)
-        visibility = try container.decode(Int.self, forKey: .visibility)
-//        sunrise = try? container.decode(Date.self, forKey: .sunrise)
-//        sunset = try? container.decode(Date.self, forKey: .sunset)
-        mainWeather = try? container.decode([MainWeather].self, forKey: .mainWeather)
-    }
 }

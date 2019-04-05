@@ -15,11 +15,4 @@ struct Wind: Decodable {
         case speed
         case degrees = "deg"
     }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        speed = try container.decode(Double.self, forKey: .speed)
-        degrees = try? container.decode(Int.self, forKey: .degrees)
-    }
 }

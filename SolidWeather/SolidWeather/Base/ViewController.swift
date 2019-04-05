@@ -20,5 +20,8 @@ class ViewController<R: Router, VM: ViewModel<R>>: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.viewModel.router.viewController = self
+        self.viewModel.updated = onModelUpdates
     }
+    
+    func onModelUpdates() {}
 }
