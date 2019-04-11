@@ -8,11 +8,11 @@
 
 struct Measurements: Decodable {
 
-    var temperature: Double
-    var pressure: Int
-    var humidity: Int
-    var minimalTemperature: Double
-    var maximalTemperature: Double
+    var temperature: Double?
+    var pressure: Int?
+    var humidity: Int?
+    var minimalTemperature: Double?
+    var maximalTemperature: Double?
     
     enum CodingKeys: String, CodingKey {
         case temperature = "temp"

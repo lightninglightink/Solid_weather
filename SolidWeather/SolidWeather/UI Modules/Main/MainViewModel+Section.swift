@@ -28,6 +28,7 @@ extension MainViewModel {
         
         enum CellType {
             case today(Weather)
+            case weekly(Weather)
         }
         
         var type: CellType

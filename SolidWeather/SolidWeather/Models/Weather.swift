@@ -18,14 +18,12 @@ import Foundation
 
 struct Weather: Decodable {
     
-    var city: String?
     var wind: Wind?
     var clouds: Clouds?
     var measurements: Measurements?
-    var visibility: Int = -1
-//    var sunrise: Date?
-//    var sunset: Date?
+    var visibility: Int?
     var mainWeather: [MainWeather]?
+    var timestamp: Int?
     
     enum CodingKeys: String, CodingKey {
         case city = "name"
@@ -36,5 +34,17 @@ struct Weather: Decodable {
 //        case sunrise
 //        case sunset
         case mainWeather = "weather"
+        case timestamp = "dt"
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        wind = try? container.decode(Wind.self, forKey: .wind)
+        clouds = try? container.decode(Clouds.self, forKey: .clouds)
+        measurements = try? container.decode(Measurements.self, forKey: .measurements)
+        visibility = try? container.decode(Int.self, forKey: .visibility)
+        mainWeather = try? container.decode([MainWeather].self, forKey: .mainWeather)
+        timestamp = try? container.decode(Int.self, forKey: .timestamp)
     }
 }

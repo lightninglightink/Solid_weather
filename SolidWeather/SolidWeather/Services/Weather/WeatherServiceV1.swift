@@ -20,7 +20,7 @@ class WeatherServiceV1: WeatherService {
         }
     }
     
-    func getCurrentWeekWeather(location: String, completion: @escaping ([Weather]) -> Void) {
+    func getCurrentWeekWeather(location: String, completion: @escaping (WeeklyForecast) -> Void) {
         networking.getCurrentWeekWeather(location: location) { (weather) in
             completion(weather)
         }

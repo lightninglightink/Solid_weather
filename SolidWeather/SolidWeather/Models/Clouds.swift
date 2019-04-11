@@ -8,7 +8,7 @@
 
 struct Clouds: Decodable {
     
-    var all: Int
+    var all: Int?
     
     enum CodingKeys: String, CodingKey {
         case all

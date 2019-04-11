@@ -12,6 +12,11 @@ class Services {
     
     private init() {}
     
-    lazy var networking: NetworkingService = NetworkingServiceV1()
+    // MARK: - Private Services
+    
+    private lazy var networking: NetworkingService = NetworkingServiceV1()
+    
+    // MARK: - Private Services
+    
     lazy var weather: WeatherService = WeatherServiceV1(networking: networking)
 }

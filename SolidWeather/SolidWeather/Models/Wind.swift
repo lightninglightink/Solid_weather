@@ -8,7 +8,7 @@
 
 struct Wind: Decodable {
     
-    var speed: Double
+    var speed: Double?
     var degrees: Int?
     
     enum CodingKeys: String, CodingKey {

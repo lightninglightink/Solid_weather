@@ -8,18 +8,28 @@
 
 class MainViewModel: ViewModel<MainRouter> {
     
-    var sections: [Section] = []
+    let city = "London"
+    
+    var sections: [Section] = [] {
+        didSet {
+            updated()
+        }
+    }
     
     override init() {
         super.init()
         
-        Services.shared.weather.getCurrentWeather(location: "London") { [weak self] (weather) in
-            self?.sections = [Section(type: .today, items: [ Cell(type: .today(weather)) ])]
-            self?.updated()
-        }
-//        Services.shared.weather.getCurrentWeekWeather(location: "London") { [weak self] (weekWeather) in
-//            self?.currentWeekWeather = weekWeather
+//        Services.shared.weather.getCurrentWeather(location: city) { [weak self] (weather) in
+//            self?.sections = [Section(type: .today, items: [ Cell(type: .today(weather)) ])]
 //        }
+        
+        Services.shared.weather.getCurrentWeekWeather(location: city) { [weak self] (weekWeather) in
+            weekWeather.weatherArray?
+                .forEach {
+                    self?.sections.append(Section(type: .week,
+                                                  items: [ Cell(type: .weekly($0)) ]))
+            }
+        }
     }
     
     func showDetail() {

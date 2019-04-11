@@ -430,10 +430,11 @@
 
 import Foundation
 
-struct WeeklyForecast {
+struct WeeklyForecast: Decodable {
     
-//    var location: Location?
-//    var sunCycle: SunCycle?
-//    var days: [DailyWeather]?
-//    fileprivate var partsOfDailyWeather: [PartOFDailyWeather]?
+    var weatherArray: [Weather]?
+    
+    enum CodingKeys: String, CodingKey {
+        case weatherArray
+    }
 }

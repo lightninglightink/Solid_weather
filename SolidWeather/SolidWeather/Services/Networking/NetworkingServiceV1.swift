@@ -22,7 +22,7 @@ class NetworkingServiceV1: NetworkingService {
             task: target.task,
             httpHeaderFields: target.headers
         )
-        
+        print("Request url:\(url)")
         return endpoint.adding(newHTTPHeaderFields: [:])
     }
     
@@ -45,11 +45,11 @@ class NetworkingServiceV1: NetworkingService {
         })
     }
     
-    func getCurrentWeekWeather(location: String, completion: @escaping ([Weather]) -> Void) {
-        weather.request(.currentWeather(location: location), completion: { [weak self] (result) in
+    func getCurrentWeekWeather(location: String, completion: @escaping (WeeklyForecast) -> Void) {
+        weather.request(.currentWeekWeather(location: location), completion: { [weak self] (result) in
             guard let self = self else { return }
             guard let response = try? result.get(),
-                let value = try? response.map([Weather].self, using: self.jsonDecoder)
+                let value = try? response.map(WeeklyForecast.self, using: self.jsonDecoder)
                 else {
                     return
             }

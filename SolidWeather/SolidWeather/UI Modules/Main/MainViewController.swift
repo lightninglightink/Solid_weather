@@ -32,7 +32,8 @@ class MainViewController: ViewController<MainRouter, MainViewModel>, UITableView
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         
-        tableView.registerCells([MainCell.self])
+        tableView.registerCells([MainCell.self,
+                                SecondaryCell.self])
     }
     
     override func onModelUpdates() {
@@ -53,27 +54,53 @@ class MainViewController: ViewController<MainRouter, MainViewModel>, UITableView
     // MARK: - TableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCell.identifier, for: indexPath) as? MainCell else {
-            return UITableViewCell()
-        }
-        
         let sectionModel = viewModel.sections[indexPath.section]
         let cellModel = sectionModel.items[indexPath.row]
         
         switch sectionModel.type {
             
         case .today:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCell.identifier,
+                                                           for: indexPath) as? MainCell
+                else {
+                    return UITableViewCell()
+            }
+            
             switch cellModel.type {
                 
-            case .today(let model):
-                cell.cityLabel.text = model.city
-                cell.temperatureLabel.text = "\(model.measurements?.temperature ?? 0) F"
+            case .today(let weather):
+                cell.cityLabel.text = viewModel.city
+                cell.temperatureLabel.text = "\(weather.measurements?.temperature ?? 0) F"
+                
+            case .weekly:
+                break;
             }
+            
+            return cell
+            
         case .week:
-            break
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SecondaryCell.identifier,
+                                                           for: indexPath) as? SecondaryCell
+                else {
+                    return UITableViewCell()
+            }
+            
+            switch cellModel.type {
+                
+            case .today:
+                break;
+                
+            case .weekly(let weather):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SecondaryCell.identifier, for: indexPath) as? SecondaryCell else {
+                    return UITableViewCell()
+                }
+                cell.cityLabel.text = viewModel.city
+                cell.temperatureLabel.text = "\(weather.measurements?.temperature ?? 0) F"
+                cell.timeLabel.text = "((weather.timestamp ?? 0))"
+                
+            }
+            return cell
         }
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
