@@ -12,22 +12,14 @@ class MainViewController: ViewController<MainRouter, MainViewModel>, UITableView
     
     let tableView = UITableView()
     
-    override func loadView() {
-        super.loadView()
-        view.backgroundColor = .cyan
-        
+    override func setupConstraints() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupTable()
-    }
-    
-    func setupTable() {
+    override func setupTable() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()

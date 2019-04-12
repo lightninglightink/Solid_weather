@@ -23,5 +23,20 @@ class ViewController<R: Router, VM: ViewModel<R>>: UIViewController {
         self.viewModel.updated = onModelUpdates
     }
     
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = .white
+        setupConstraints()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        setupTable()
+    }
+    
     func onModelUpdates() {}
+    func setupConstraints() {}
+    func setupView() {}
+    func setupTable() {}
 }

@@ -18,17 +18,38 @@ class MainViewModel: ViewModel<MainRouter> {
         }
     }
     
+    private var todaySection: Section? {
+        didSet {
+            generateSections()
+        }
+    }
+    private var weeklySection: Section? {
+        didSet {
+            generateSections()
+        }
+    }
+    
     override init() {
         super.init()
         
-//        Services.shared.weather.getCurrentWeather(location: city) { [weak self] (weather) in
-//            self?.sections = [Section(type: .today, items: [ Cell(type: .today(weather)) ])]
-//        }
+        Services.shared.weather.getCurrentWeather(location: city) { [weak self] (weather) in
+            self?.todaySection = Section(type: .today, items: [ Cell(type: .today, weather: weather) ])
+        }
         
         Services.shared.weather.getCurrentWeekWeather(location: city) { [weak self] (weekWeather) in
             var cells: [Cell] = []
             weekWeather.weatherArray?.forEach { cells.append( Cell(type: .weekly, weather: $0) ) }
-            self?.sections.append(Section(type: .week, items: cells))
+            self?.weeklySection = Section(type: .week, items: cells)
+        }
+    }
+    
+    private func generateSections() {
+        sections = []
+        if let today = todaySection {
+            sections.append(today)
+        }
+        if let weekly = weeklySection {
+            sections.append(weekly)
         }
     }
     
