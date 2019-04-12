@@ -8,4 +8,10 @@
 
 class DetailViewModel: ViewModel<DetailRouter> {
     
+    var weather: Weather
+    
+    init(weather: Weather) {
+        self.weather = weather
+        super.init()
+    }
 }

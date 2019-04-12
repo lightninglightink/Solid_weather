@@ -6,6 +6,8 @@
 //  Copyright © 2019 LightinkLTD. All rights reserved.
 //
 
+import UIKit
+
 class MainViewModel: ViewModel<MainRouter> {
     
     let city = "London"
@@ -24,15 +26,16 @@ class MainViewModel: ViewModel<MainRouter> {
 //        }
         
         Services.shared.weather.getCurrentWeekWeather(location: city) { [weak self] (weekWeather) in
-            weekWeather.weatherArray?
-                .forEach {
-                    self?.sections.append(Section(type: .week,
-                                                  items: [ Cell(type: .weekly($0)) ]))
-            }
+            var cells: [Cell] = []
+            weekWeather.weatherArray?.forEach { cells.append( Cell(type: .weekly, weather: $0) ) }
+            self?.sections.append(Section(type: .week, items: cells))
         }
     }
     
-    func showDetail() {
-        router.route(to: .detail)
+    func showDetail(at indexPath: IndexPath) {
+        let section = sections[indexPath.section]
+        let weather = section.items[indexPath.row].weather
+        
+        router.route(to: .detail(weather))
     }
 }

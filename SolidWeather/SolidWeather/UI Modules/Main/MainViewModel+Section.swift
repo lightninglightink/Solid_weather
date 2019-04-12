@@ -27,13 +27,15 @@ extension MainViewModel {
     struct Cell {
         
         enum CellType {
-            case today(Weather)
-            case weekly(Weather)
+            case today
+            case weekly
         }
         
         var type: CellType
+        var weather: Weather
         
-        init(type: CellType) {
+        init(type: CellType, weather: Weather) {
+            self.weather = weather
             self.type = type
         }
     }

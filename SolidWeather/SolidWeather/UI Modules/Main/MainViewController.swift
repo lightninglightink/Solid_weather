@@ -57,54 +57,55 @@ class MainViewController: ViewController<MainRouter, MainViewModel>, UITableView
         let sectionModel = viewModel.sections[indexPath.section]
         let cellModel = sectionModel.items[indexPath.row]
         
-        switch sectionModel.type {
+        return cellForModel(cellModel, tableView: tableView, indexPath: indexPath)
+    }
+    
+    func cellForModel(_ cellModel: MainViewModel.Cell,
+                      tableView: UITableView,
+                      indexPath: IndexPath) -> UITableViewCell {
+        switch cellModel.type {
             
         case .today:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCell.identifier,
-                                                           for: indexPath) as? MainCell
-                else {
-                    return UITableViewCell()
-            }
-            
-            switch cellModel.type {
-                
-            case .today(let weather):
-                cell.cityLabel.text = viewModel.city
-                cell.temperatureLabel.text = "\(weather.measurements?.temperature ?? 0) F"
-                
-            case .weekly:
-                break;
-            }
-            
-            return cell
-            
-        case .week:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SecondaryCell.identifier,
-                                                           for: indexPath) as? SecondaryCell
-                else {
-                    return UITableViewCell()
-            }
-            
-            switch cellModel.type {
-                
-            case .today:
-                break;
-                
-            case .weekly(let weather):
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: SecondaryCell.identifier, for: indexPath) as? SecondaryCell else {
-                    return UITableViewCell()
-                }
-                cell.cityLabel.text = viewModel.city
-                cell.temperatureLabel.text = "\(weather.measurements?.temperature ?? 0) F"
-                cell.timeLabel.text = "((weather.timestamp ?? 0))"
-                
-            }
-            return cell
+            return makeTodayCell(tableView, indexPath: indexPath, weather: cellModel.weather)
+        case .weekly:
+            return makeWeeklyCell(tableView, indexPath: indexPath, weather: cellModel.weather)
         }
+    }
+    
+    func makeTodayCell(_ tableView: UITableView, indexPath: IndexPath, weather: Weather) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCell.identifier,
+                                                       for: indexPath) as? MainCell
+            else {
+                return UITableViewCell()
+        }
+        
+        cell.cityLabel.text = viewModel.city
+        cell.temperatureLabel.text = "\(weather.measurements?.temperature ?? 0) F"
+        
+        return cell
+    }
+    
+    func makeWeeklyCell(_ tableView: UITableView, indexPath: IndexPath, weather: Weather) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SecondaryCell.identifier,
+                                                       for: indexPath) as? SecondaryCell
+            else {
+                return UITableViewCell()
+        }
+        
+        cell.cityLabel.text = viewModel.city
+        cell.temperatureLabel.text = "\(weather.measurements?.temperature ?? 0) F"
+        cell.timeLabel.text = "(\(weather.timestamp ?? 0))"
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.showDetail()
+        viewModel.showDetail(at: indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.sections[section].type.rawValue.capitalized
+    }
+    
 }
