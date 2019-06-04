@@ -8,8 +8,6 @@
 
 import Moya
 
-//&appid=YOUR_API_KEY
-
 fileprivate let apiKey = "bb55834b34109d37e9770bf7dc802402"
 
 extension WeatherApi: TargetType {

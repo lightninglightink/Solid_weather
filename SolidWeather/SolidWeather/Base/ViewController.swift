@@ -35,6 +35,11 @@ class ViewController<R: Router, VM: ViewModel<R>>: UIViewController {
         setupTable()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.viewModel.updated = {}
+    }
+    
     func onModelUpdates() {}
     func setupConstraints() {}
     func setupView() {}
