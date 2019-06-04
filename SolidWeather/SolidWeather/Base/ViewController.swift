@@ -20,5 +20,28 @@ class ViewController<R: Router, VM: ViewModel<R>>: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.viewModel.router.viewController = self
+        self.viewModel.updated = onModelUpdates
     }
+    
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = .white
+        setupConstraints()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        setupTable()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.viewModel.updated = {}
+    }
+    
+    func onModelUpdates() {}
+    func setupConstraints() {}
+    func setupView() {}
+    func setupTable() {}
 }

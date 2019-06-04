@@ -19,4 +19,9 @@ struct Screens {
         let model = MainViewModel()
         return MainViewController(viewModel: model)
     }
+    
+    static func detail(weather: Weather) -> DetailViewController {
+        let model = DetailViewModel(weather: weather)
+        return DetailViewController(viewModel: model)
+    }
 }

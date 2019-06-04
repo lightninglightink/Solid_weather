@@ -11,7 +11,8 @@ import Foundation
 class ViewModel<R: Router>: NSObject {
 
     let router: R
-
+    var updated: () -> Void = {}
+    
     override init() {
         router = R()
         super.init()
